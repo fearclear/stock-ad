@@ -1,0 +1,41 @@
+{
+  "name": "stock-ad",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development&& parcel src/index.html --open",
+    "prebuild": "rimraf dist",
+    "build": "cross-env NODE_ENV=production&& parcel build src/index.html -d dist/ --public-url ./"
+  },
+  "keywords": [
+    "qucik-search",
+    "bond"
+  ],
+  "author": "fearclear(fearcleari@gmail.com)",
+  "license": "MIT",
+  "dependencies": {
+    "antd": "^3.4.0",
+    "axios": "^0.18.0",
+    "moment": "^2.22.1",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0",
+    "xlsx": "^0.12.10"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-import": "^1.6.7",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0",
+    "rimraf": "^2.6.2"
+  }
+}

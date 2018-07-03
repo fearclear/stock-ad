@@ -1,0 +1,17 @@
+html {
+  height: auto;
+}
+
+.main {
+  position: relative;
+  height: 38.2%;
+  min-height: 293px;
+}
+
+.content {
+  padding: 0 20px;
+}
+
+.table {
+  margin-top: 20px;
+}
