@@ -181,21 +181,23 @@ class AppComponent extends React.Component {
   }
   addAcUser() {
     let self = this
-    service({
-      url: api.acUser,
-      method: 'post',
-      data: {
-        userId: self.state.acUser
-      }
-    }).then(data => {
-      if(data.success) {
-        message.success('添加成功')
-        this.getAccessUsers()
-        this.setState({
-          acUser: ''
-        })
-      }
-    })
+    if(this.state.acUser.trim()) {
+      service({
+        url: api.acUser,
+        method: 'post',
+        data: {
+          userId: self.state.acUser
+        }
+      }).then(data => {
+        if(data.success) {
+          message.success('添加成功')
+          this.getAccessUsers()
+          this.setState({
+            acUser: ''
+          })
+        }
+      })
+    }
   }
   changeAcUser(acUser) {
     this.setState({
@@ -223,15 +225,14 @@ class AppComponent extends React.Component {
         startDate: moment(this.state.date[0]).toDate(),
         endDate: moment(this.state.date[1]).toDate()
       }
+    }).then(data => {
+      var a = document.createElement('a')
+      document.body.appendChild(a)
+      a.setAttribute('style', 'display:none')
+      a.setAttribute('href', data.exportUrl)
+      a.setAttribute('download', '下载.xlsx')
+      a.click()
     })
-      .then(data => {
-        var a = document.createElement('a')
-        document.body.appendChild(a)
-        a.setAttribute('style', 'display:none')
-        a.setAttribute('href', data.exportUrl)
-        a.setAttribute('download', '下载.xlsx')
-        a.click()
-      })
   }
   render() {
     const {
@@ -286,8 +287,18 @@ class AppComponent extends React.Component {
               key="2"
             >
               <div className="content">
-                <RangePicker onChange={this.handleDateChange.bind(this)} value={date} />
-                <Button className="export" type="primary" icon="download" onClick={this.export.bind(this)}>导出文件</Button>
+                <RangePicker
+                  onChange={this.handleDateChange.bind(this)}
+                  value={date}
+                />
+                <Button
+                  className="export"
+                  type="primary"
+                  icon="download"
+                  onClick={this.export.bind(this)}
+                >
+                  导出文件
+                </Button>
                 <Table
                   className="table"
                   align="center"
