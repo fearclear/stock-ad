@@ -11,7 +11,8 @@ const api = {
   acUser: `${url}/user/acUser`,
   user: `${url}/user/user`,
   infos: `${url}/info/infos`,
-  log: `${url}/log/log`
+  log: `${url}/log/log`,
+  export: `${url}/log/export`
 }
 
 const fetch = (options) => {

@@ -215,6 +215,24 @@ class AppComponent extends React.Component {
       }
     })
   }
+  export() {
+    service({
+      url: api.export,
+      method: 'get',
+      data: {
+        startDate: moment(this.state.date[0]).toDate(),
+        endDate: moment(this.state.date[1]).toDate()
+      }
+    })
+      .then(data => {
+        var a = document.createElement('a')
+        document.body.appendChild(a)
+        a.setAttribute('style', 'display:none')
+        a.setAttribute('href', data.exportUrl)
+        a.setAttribute('download', '下载.xlsx')
+        a.click()
+      })
+  }
   render() {
     const {
       upload,
@@ -268,10 +286,8 @@ class AppComponent extends React.Component {
               key="2"
             >
               <div className="content">
-                <RangePicker
-                  onChange={this.handleDateChange.bind(this)}
-                  value={date}
-                />
+                <RangePicker onChange={this.handleDateChange.bind(this)} value={date} />
+                <Button className="export" type="primary" icon="download" onClick={this.export.bind(this)}>导出文件</Button>
                 <Table
                   className="table"
                   align="center"
